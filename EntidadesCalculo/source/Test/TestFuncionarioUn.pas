@@ -44,13 +44,25 @@ end;
 procedure TestTFuncionario.TestCalculoINSS;
 begin
   Self.FFuncionario.Salario := 1000;
-  Check(Self.FFuncionario.INSS = 800, 'INSS inválido');
+  Self.FFuncionario.Dependentes.Edit;
+  Self.FFuncionario.Dependentes.IDFuncionario := -1;
+  Self.FFuncionario.Dependentes.Nome := 'Dependente Calculo INSS';
+  Self.FFuncionario.Dependentes.IsCalculaINSS := True;
+  Self.FFuncionario.Dependentes.Post;
+
+  Check(Self.FFuncionario.INSS = 80, 'INSS inválido');
 end;
 
 procedure TestTFuncionario.TestCalculoIR;
 begin
   Self.FFuncionario.Salario := 1000;
-  Check(Self.FFuncionario.INSS = 800, 'INSS inválido');
+  Self.FFuncionario.Dependentes.Edit;
+  Self.FFuncionario.Dependentes.IDFuncionario := -1;
+  Self.FFuncionario.Dependentes.Nome := 'Dependente Calculo IR';
+  Self.FFuncionario.Dependentes.IsCalculaIR := True;
+  Self.FFuncionario.Dependentes.Post;
+
+  Check(Self.FFuncionario.IR = 120, 'INSS inválido');
 end;
 
 initialization
